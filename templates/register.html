@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css" media="all" />
+    <style>
+        .error-message {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="w3l-hotair-form">
+        <h1>调度管理-注册页面</h1>
+        <div class="container">
+            <div class="workinghny-form-grid">
+                <div class="main-hotair">
+                    <div class="alert-close">
+                        <span class="fa fa-close"></span>
+                    </div>
+                 
+                    <div class="content-wthree">
+                        <p>创建您的账户</p>
+                        <form id="registerForm" action="/register" method="POST">
+                            <input type="text" class="text" name="nickname" placeholder="请输入您想创建用户的账户名" required="">
+                            <input type="text" class="text" name="truename" placeholder="请输入您的真实姓名" required="">
+                            <input type="password" id="password" class="password" name="password" placeholder="请输入您的密码" required="">
+                            <input type="password" id="confirmPassword" class="password" name="confirmPassword" placeholder="请确认您的密码" required="">
+                            <p class="error-message" id="errorMessage">密码不匹配</p>
+                            <p class="error-message" id="repeatMessage">该用户名已存在</p>
+                            <button class="btn" type="submit">注册</button>
+                        </form>
+                        <p class="account">已经有了账户？ <a href="{{ url_for('index') }}">去登录</a></p>
+                    </div>
+                    <div class="w3l_form align-self">
+                        <div class="left_grid_info">
+                            <!-- 可以在这里添加图片或其他内容 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            // 检查 URL 参数并显示错误消息
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('status') === 'repeat_error') {
+                $('#repeatMessage').show();
+            } 
+            else if (urlParams.get('status') === 'error') {
+                $('#errorMessage').show();
+            } 
+            else {
+                $('#errorMessage').hide();
+            } 
+        });
+    </script>
+    <!-- <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.alert-close').on('click', function () {
+                $('.main-hotair').fadeOut('slow', function () {
+                    $('.main-hotair').remove();
+                });
+            });
+
+            $('#registerForm').on('submit', function(e) {
+                var password = $('#password').val();
+                var confirmPassword = $('#confirmPassword').val();
+
+                if (password !== confirmPassword) {
+                    e.preventDefault(); // 阻止表单提交
+                    $('#errorMessage').show(); // 显示错误信息
+                } else {
+                    $('#errorMessage').hide(); // 隐藏错误信息
+                }
+            });
+        });
+    </script> -->
+
+</body>
+
+</html>

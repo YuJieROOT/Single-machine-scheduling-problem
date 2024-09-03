@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>个人主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css" media="all" />
+    <style>
+        .content-wthree form {
+            margin-bottom: 20px; /* 每个表单之间的间隔 */
+        }
+        .content-wthree button {
+            margin-bottom: 10px; /* 按钮与下方文本之间的间隔 */
+        }
+        .user-info {
+            color: black;
+            font-size: 20px; /* 设置字体大小 */
+        }
+    </style>
+</head>
+
+<body>
+    <section class="w3l-hotair-form">
+        <h1>个人主页</h1>
+        <div class="container">
+            <div class="workinghny-form-grid">
+                <div class="main-hotair">
+                    <div class="alert-close">
+                        <span class="fa fa-close"></span>
+                    </div>
+                    <div class="content-wthree">
+                        <form id="user_home" action="{{ url_for('user_dashboard') }}" method="post">
+                            <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="profile">查看个人信息</button>
+                            <p class="user-info" id="showMessage">
+                                用户名: {{ session['username'] }} <br>
+                                真实姓名：{{ session['truename'] }} <br>
+                                密码: {{ session['password'] }} <br>
+                                等级：用户 <br>
+                            </p>
+                            <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="view_tasks">查看当前任务调度结果</button>
+                            {% if status == 'show_results' %}
+                            <p class="user-info" id="showresults">
+                                optimal_batches: {{ optimal_batches }} <br>
+                                min_time：{{ min_time }} <br>
+                                best_batch：{{ batch_str }} <br>
+                            </p>
+                            {% endif %}
+                            <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="logout">退出登录</button>
+                        </form>
+                    </div>
+                    <div class="w3l_form align-self">
+                        <div class="left_grid_info">
+                            <!-- 这里可以添加图片或其他内容 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            // 检查 URL 参数并显示错误消息
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('status') === 'show_message') {
+                $('#showMessage').show();
+            } else{
+                $('#showMessage').hide();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css" media="all" />
+    <style>
+        .success-message, .error-message {
+            display: none;
+        }
+        .success-message {
+            color: green;
+        }
+        .error-message {
+            color: red;
+        }
+        .admin-login {
+            margin-top: 20px;
+        }
+        .admin-login input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="w3l-hotair-form">
+        <h1>调度管理-登录页面</h1>
+        <div class="container">
+            <div class="workinghny-form-grid">
+                <div class="main-hotair">
+                    <div class="alert-close">
+                        <span class="fa fa-close"></span>
+                    </div>
+                 
+                    <div class="content-wthree">
+                        <h2>用户登录</h2>
+                        <p>请登录您的账户</p>
+                        <!-- 显示状态消息 -->
+                        <p class="success-message" id="successMessage">注册成功！请登录。</p>
+                        <form id="userLoginForm" method="POST" action="/">
+                            <input type="text" class="text" name="username" placeholder="用户名" required="">
+                            <input type="password" class="password" name="password" placeholder="密码" required="">
+                            <p class="error-message" id="usernameErrorMessage">用户名不存在</p>
+                            <p class="error-message" id="passwordErrorMessage">用户名和密码不匹配</p>
+                            <button class="btn" type="submit">登录</button>
+                        </form>
+
+                        <h3>管理员登录</h3>
+                        <!-- 显示管理员状态消息 -->
+                        <form id="adminLoginForm" method="POST" action="/">
+                            <input type="text" class="text" name="adminUsername" placeholder="管理员用户名" required="">
+                            <input type="password" class="password" name="adminPassword" placeholder="管理员密码" required="">
+                            <p class="error-message" id="adminUsernameErrorMessage">管理员用户名不存在</p>
+                            <p class="error-message" id="adminPasswordErrorMessage">管理员用户名和密码不匹配</p>
+                            <button class="btn" type="submit">管理员登录</button>
+                        </form>
+                        <p class="account">没有账户？<a href="{{ url_for('register') }}">注册</a></p>
+                    </div>
+                    <div class="w3l_form align-self">
+                        <div class="left_grid_info">
+                            <!-- 这里可以添加图片或其他内容 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('status') === 'register_success') {
+                $('#successMessage').show();
+            } else if (urlParams.get('status') === 'username_error') {
+                $('#usernameErrorMessage').show();
+            } else if (urlParams.get('status') === 'password_error') {
+                $('#passwordErrorMessage').show();
+            } else if (urlParams.get('status') === 'admin_username_error') {
+                $('#adminUsernameErrorMessage').show();
+            } else if (urlParams.get('status') === 'admin_password_error') {
+                $('#adminPasswordErrorMessage').show();
+            } else if (urlParams.get('status') === 'admin_login_success') {
+                // 可以添加管理员登录成功的处理逻辑
+            }
+        });
+    </script>
+
+</body>
+
+</html>

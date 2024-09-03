@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>管理员主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css" media="all" />
+    <style>
+        .content-wthree form {
+            margin-bottom: 5px; /* 每个表单之间的间隔 */
+        }
+        .content-wthree button {
+            margin-bottom: 5px; /* 按钮与下方文本之间的间隔 */
+        }
+        .admin-info {
+            color: black;
+            font-size: 20px; /* 设置字体大小 */
+        }
+    </style>
+</head>
+
+<body>
+    <section class="w3l-hotair-form">
+        <h1>管理员主页</h1>
+        <div class="container">
+            <div class="workinghny-form-grid">
+                <div class="main-hotair">
+                    <div class="alert-close">
+                        <span class="fa fa-close"></span>
+                    </div>
+                    <div class="content-wthree">
+                        <form id="admin_actions" action="{{ url_for('admin_dashboard') }}" method="post">
+                            <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="profile">查看个人信息</button>
+                        </form>
+                        <p class="admin-info" id="showadminMessage">
+                            用户名: {{ session['adminname'] }} <br>
+                            密码: {{ session['adminpassword'] }} <br>
+                            等级：管理员 <br>
+                        </p>
+                        <form id="add_task" method="POST" action="{{ url_for('admin_dashboard') }}">
+                            <input type="text" class="text" name="String" placeholder="请输入调度初始序列" required="">
+                            <input type="text" class="text" name="Time" placeholder="请输入理想工作时长" required="">
+                            <input type="text" class="text" name="Deterioration" placeholder="请输入恶化率" required="">
+                            <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="add">添加调度任务</button>
+                        </form>
+                        <form id="delete_works" action="{{ url_for('admin_dashboard') }}" method="post">
+                            <input type="text" class="text" name="Delete_work" placeholder="请输入删除的工作" required="">
+                            <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="delete">删除队列中的工作</button>
+                        </form>
+                        <form id="show_results" action="{{ url_for('admin_dashboard') }}" method="post">
+                            <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="show">查看调度结果</button>
+                        </form>
+                        {% if status == 'show_results' %}
+                        <p class="admin-info" id="showresults">
+                            optimal_batches: {{ optimal_batches }} <br>
+                            min_time：{{ min_time }} <br>
+                            best_batch：{{ batch_str }} <br>
+
+                        </p>
+                        {% endif %}
+                        <form id="admin_log_out" action="{{ url_for('index') }}" method="post">
+                            <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="adminlogout">退出登录</button>
+                        </form>
+                        
+
+                    </div>
+                    <div class="w3l_form align-self">
+                        <div class="left_grid_info">
+                            <!-- 这里可以添加图片或其他内容 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            // 检查 URL 参数并显示管理员信息
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('status') === 'show_admin_message') {
+                $('#showadminMessage').show();
+            } else{
+                $('#showadminMessage').hide();  
+            }
+        });
+    </script>
+</body>
+
+</html>
