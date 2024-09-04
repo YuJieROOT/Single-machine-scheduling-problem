@@ -19,5 +19,21 @@
 ### static文件夹
 存放静态文件，如CSS、JavaScript、图片、字体等。这些文件不需要经过服务器端处理，可以直接被浏览器加载。Flask会自动从static文件夹中提供这些文件。
 
+## 数据库连接细节
+使用"pyodbc" 连接 SQL server数据库
+### 建库
+        USE [master]
+        GO
+        CREATE DATABASE [GA_V1]
+         CONTAINMENT = NONE
+         ON  PRIMARY 
+        ( NAME = N'GA_V1', FILENAME = N'D:\MSSQL\MSSQL16.MSSQLSERVER\MSSQL\DATA\GA_V1.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+         LOG ON 
+        ( NAME = N'GA_V1_log', FILENAME = N'D:\MSSQL\MSSQL16.MSSQLSERVER\MSSQL\DATA\GA_V1_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+         WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+        GO
+        -- 设置数据库兼容级别
+        ALTER DATABASE [GA_V1] SET COMPATIBILITY_LEVEL = 160
+        GO
 
 
