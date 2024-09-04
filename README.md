@@ -33,8 +33,8 @@ driver = '{ODBC Driver 17 for SQL Server}'  # ODBC 驱动程序名称，可以�
 ```
 - 在SQL server中需要创建用户名为root91，密码为123456789的用户，提供SQL server登录方式，并赋予root91用户操作权限，服务器名称为localhost提供本地连接，请注意ODBC驱动程序名称需和安装的版本相同。  
 - 注意在SQL server 配置管理器中SQL server网络配置->“MSSQLSERVER的协议”中启用TCP/IP协议。  
-- SQL server下载地址：https://www.microsoft.com/en-us/sql-server/sql-server-downloads。  
-- SSMS下载地址：https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16。  
+- SQL server下载地址：https://www.microsoft.com/en-us/sql-server/sql-server-downloads  
+- SSMS下载地址：https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16  
 
 ### 建库
 ```sql
