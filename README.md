@@ -31,10 +31,12 @@ username = 'root91'  # 替换为您的 SQL Server 用户名
 password = '123456789'  # 替换为您的 SQL Server 密码
 driver = '{ODBC Driver 17 for SQL Server}'  # ODBC 驱动程序名称，可以根据安装的版本更改
 ```
-在SQL server中需要创建用户名为root91，密码为123456789的用户，提供SQL server登录方式，并赋予root91用户操作权限，服务器名称为localhost提供本地连接，请注意ODBC驱动程序名称需和安装的版本相同
+在SQL server中需要创建用户名为root91，密码为123456789的用户，提供SQL server登录方式，并赋予root91用户操作权限，服务器名称为localhost提供本地连接，请注意ODBC驱动程序名称需和安装的版本相同。
 
-注意在SQL server 配置管理器中SQL server网络配置->“MSSQLSERVER的协议”中启用TCP/IP协议
+注意在SQL server 配置管理器中SQL server网络配置->“MSSQLSERVER的协议”中启用TCP/IP协议。
 
+SQL server下载地址：https://www.microsoft.com/en-us/sql-server/sql-server-downloads.
+SSMS下载地址：[https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)。
 
 ### 建库
 ```sql
@@ -52,6 +54,8 @@ GO
 ALTER DATABASE [GA_V1] SET COMPATIBILITY_LEVEL = 160
 GO
 ```
+注意 FILENAME = N'D:\MSSQL\MSSQL16.MSSQLSERVER\MSSQL\DATA\GA_V1.mdf'中GA_V1为需要连接的数据库名，也需注意绝对路径的地址，不然连接失败。
+
 
 
 
