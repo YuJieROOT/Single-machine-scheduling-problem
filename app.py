@@ -65,7 +65,7 @@ def index():
             elif len(correct_password) == 0 or password != correct_password[0][0].strip():
                 return redirect(url_for('index', status='password_error'))
             else:
-                session['logged_in'] = True
+                session['logged_in'] = True  # 构建session对象，向对象中存储数据，这些数据可以在全路由中共享
                 session['username'] = username
                 session['truename'] = TrueName[0][0].strip()
                 session['password'] = password
@@ -128,7 +128,7 @@ def user_dashboard():
 
             optimal_batches, min_time, best_batch = genetic_algorithm(tasks_name, tasks_time, population_size,
                                                                       generations, wait_coefficients, max_work_time,
-                                                                      rest_time)
+                                                                      rest_time)  
             batch_str = ""
             for i, batch in enumerate(best_batch):
                 batch_str += ("批次" + str(i + 1) + str(batch) + "\n")
@@ -136,7 +136,7 @@ def user_dashboard():
             # return render_template('user_dashboard.html',status='show_results',task_result=task_result)
 
             return render_template('user_dashboard.html', status='show_results', optimal_batches=optimal_batches,
-                                   min_time=min_time, batch_str=batch_str)
+                                   min_time=min_time, batch_str=batch_str) # 使用Jinja2模板传递本路由参数，并渲染html页面
 
         elif action == "logout":
             session.pop('logged_in', None)
