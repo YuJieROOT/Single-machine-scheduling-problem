@@ -5,7 +5,10 @@
     - **/css**: 存放样式表文件。
     - **/js**: 存放JavaScript文件。
     - **/images**: 存放图片文件。
+    - **/fonts**: 存放字体文件
   - **/templates**: 模板文件夹，存放HTML模板文件。
     - **index.html**: 首页模板。
     - **about.html**: 关于页面模板。
   - **app.py**: Flask应用的主文件。
+templates文件夹：存放HTML模板文件。Flask使用Jinja2模板引擎，允许在HTML文件中嵌入Python代码。当你在视图函数中调用render_template方法时，Flask会自动从templates文件夹中查找相应的HTML文件，并渲染出最终的网页。
+static文件夹：存放静态文件，如CSS、JavaScript、图片等。这些文件不需要经过服务器端处理，可以直接被浏览器加载。Flask会自动从static文件夹中提供这些文件。
