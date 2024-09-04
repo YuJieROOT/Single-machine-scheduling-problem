@@ -15,13 +15,13 @@
   - **app.py**: Flask应用的主文件。
   
 ### templates文件夹
-存放HTML文件。Flask使用Jinja2模板引擎，允许在HTML文件中嵌入Python代码。当你在视图函数中调用render_template方法时，Flask会自动从templates文件夹中查找相应的HTML文件，并渲染出最终的网页。
+- 存放HTML文件。Flask使用Jinja2模板引擎，允许在HTML文件中嵌入Python代码。当你在视图函数中调用render_template方法时，Flask会自动从templates文件夹中查找相应的HTML文件，并渲染出最终的网页。
 
 ### static文件夹
-存放静态文件，如CSS、JavaScript、图片、字体等。这些文件不需要经过服务器端处理，可以直接被浏览器加载。Flask会自动从static文件夹中提供这些文件。
+- 存放静态文件，如CSS、JavaScript、图片、字体等。这些文件不需要经过服务器端处理，可以直接被浏览器加载。Flask会自动从static文件夹中提供这些文件。
 
-## 数据库连接细节
-使用"pyodbc" 连接 SQL server数据库
+## 数据库配置细节
+- 使用"pyodbc" 连接 SQL server数据库
 
 ### 数据库配置
 ```python
@@ -31,10 +31,10 @@ username = 'root91'  # 替换为您的 SQL Server 用户名
 password = '123456789'  # 替换为您的 SQL Server 密码
 driver = '{ODBC Driver 17 for SQL Server}'  # ODBC 驱动程序名称，可以根据安装的版本更改
 ```
--在SQL server中需要创建用户名为root91，密码为123456789的用户，提供SQL server登录方式，并赋予root91用户操作权限，服务器名称为localhost提供本地连接，请注意ODBC驱动程序名称需和安装的版本相同。  
--注意在SQL server 配置管理器中SQL server网络配置->“MSSQLSERVER的协议”中启用TCP/IP协议。  
--SQL server下载地址：https://www.microsoft.com/en-us/sql-server/sql-server-downloads。  
--SSMS下载地址：https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16。  
+- 在SQL server中需要创建用户名为root91，密码为123456789的用户，提供SQL server登录方式，并赋予root91用户操作权限，服务器名称为localhost提供本地连接，请注意ODBC驱动程序名称需和安装的版本相同。  
+- 注意在SQL server 配置管理器中SQL server网络配置->“MSSQLSERVER的协议”中启用TCP/IP协议。  
+- SQL server下载地址：https://www.microsoft.com/en-us/sql-server/sql-server-downloads。  
+- SSMS下载地址：https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16。  
 
 ### 建库
 ```sql
@@ -52,7 +52,7 @@ GO
 ALTER DATABASE [GA_V1] SET COMPATIBILITY_LEVEL = 160
 GO
 ```
-注意 FILENAME = N'D:\MSSQL\MSSQL16.MSSQLSERVER\MSSQL\DATA\GA_V1.mdf'中GA_V1为需要连接的数据库名，也需注意绝对路径的地址，不然连接失败。
+- 注意 FILENAME = N'D:\MSSQL\MSSQL16.MSSQLSERVER\MSSQL\DATA\GA_V1.mdf'中GA_V1为需要连接的数据库名，也需注意绝对路径的地址，不然连接失败。
 
 
 
