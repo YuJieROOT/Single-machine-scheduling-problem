@@ -35,7 +35,7 @@
                         <form id="user_home" action="{{ url_for('user_dashboard') }}" method="post">
                             <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="profile">查看个人信息</button>
                             <p class="user-info" id="showMessage">
-                                用户名: {{ session['username'] }} <br>
+                                用户名: {{ session['username'] }} <br>  <!-- 用于接收储存器session的变量 -->
                                 真实姓名：{{ session['truename'] }} <br>
                                 密码: {{ session['password'] }} <br>
                                 等级：用户 <br>
@@ -43,7 +43,7 @@
                             <button class="btn" type="submit" style="width: 400px;height: 60px;" name="action" value="view_tasks">查看当前任务调度结果</button>
                             {% if status == 'show_results' %}
                             <p class="user-info" id="showresults">
-                                optimal_batches: {{ optimal_batches }} <br>
+                                optimal_batches: {{ optimal_batches }} <br> <!-- 传递本路由的变量到前端 -->
                                 min_time：{{ min_time }} <br>
                                 best_batch：{{ batch_str }} <br>
                             </p>
